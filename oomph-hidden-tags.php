@@ -22,7 +22,7 @@ License: GPLv2 or later
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/ 
+*/
 
 /**
  * @package Oomph Clone Widgets
@@ -114,7 +114,7 @@ class Oomph_Hidden_Tags {
 					</div>
 					<div class="tagchecklist"></div>
 				</div>
-	
+
 				<p class="description">Hide these tags from in tag lists and clouds, unless the logged-in user has the <strong>see_hidden_tags</strong> capability.</p>
 				<?php } ?>
 			</td>
@@ -156,11 +156,11 @@ class Oomph_Hidden_Tags {
 	/**
 	 * Filter tag links, omitting hidden ones (unless user has capability)
 	 *
-	 * This plugin assumes tag links are tag names in an <a> tag that matches 
-	 * exactly. If other plugins modify the text content of the <a> tags before 
+	 * This plugin assumes tag links are tag names in an <a> tag that matches
+	 * exactly. If other plugins modify the text content of the <a> tags before
 	 * this filter, it may not function correctly.
 	 *
-	 * Capable users will see hidden tags at the end of the tag list, and a 
+	 * Capable users will see hidden tags at the end of the tag list, and a
 	 * .hidden-tag class will be applied which by default is grayed out
 	 *
 	 * @action term_links-post_tag
@@ -181,7 +181,7 @@ class Oomph_Hidden_Tags {
 
 			if( in_array( $name, $option['tags'] ) ) {
 				if( current_user_can( self::CAPABILITY ) ) {
-					// Add 'hidden-tag' to inner most tag (probably a) 
+					// Add 'hidden-tag' to inner most tag (probably a)
 					$term_link = preg_replace( '/(?: class="(.+)"([^>]*))?>' . $name . '/', ' class="$1 hidden-tag"$2>' . $name, $term_link );
 					$hidden[] = $term_link;
 				}
