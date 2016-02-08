@@ -1,8 +1,8 @@
 === Oomph Hidden Tags ===
 Tags: hide, hidden, secret, tags
 Requires at least: 3.8
-Tested up to: 3.8.1
-Stable tag: 0.1
+Tested up to: 4.4.2
+Stable tag: 0.2
 
 Hide certain tags from tag lists and tag clouds. Allow capable users to see
 hidden tags with the *see_hidden_tags* capability.
@@ -28,6 +28,10 @@ and are grayed out by default.
 3. Visit 'Settings > Reading' to add tags
 
 == Changelog ==
+
+= 0.2 =
+* Add unit tests.
+* Add "Settings" link to Reading page
 
 = 0.1 =
 * Initial release

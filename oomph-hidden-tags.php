@@ -8,7 +8,7 @@ Version: 0.1
 Author URI: http://www.oomphinc.com/thinking/author/bdoherty/
 License: GPLv2 or later
 
-		Copyright © 2014 Oomph, Inc. <http://oomphinc.com>
+		Copyright © 2016 Oomph, Inc. <http://oomphinc.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,6 +49,7 @@ class Oomph_Hidden_Tags {
 		add_filter( 'tag_cloud_sort', array( $this, 'filter_tag_cloud' ), 0, 2 );
 		add_action( 'admin_init', array( $this, 'action_admin_init' ) );
 		add_action( 'wp_head', array( $this, 'action_wp_head' ) );
+		add_filter( 'plugin_action_links_oomph-hidden-tags/oomph-hidden-tags.php', array( $this, 'filter_plugin_action_links' ), 10, 4 );
 	}
 
 	/**
@@ -93,9 +94,8 @@ class Oomph_Hidden_Tags {
 		$a_tag = get_terms( 'post_tag', array( 'hide_empty' => false, 'number' => 1 ) );
 ?>
 	<table class="form-table">
-
 		<tr valign="top">
-			<th scope="row"><?php _e('Hidden Tags:') ?></th>
+			<th scope="row"><a name="hidden-tags"></a><?php _e('Hidden Tags:') ?></th>
 			<td id="tagsdiv-post_tag">
 				<?php if( empty( $a_tag ) ) { ?>
 				<p class="description">No tags exist on your site. Please create tags before attempting to hide them!</p>
@@ -243,6 +243,15 @@ class Oomph_Hidden_Tags {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Add a link to settings page
+	 */
+	function filter_plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
+		$actions = array( 'settings' => '<a href="' . admin_url( 'options-reading.php#hidden-tags' ) . '">' . __( 'Settings' ) . '</a>' ) + $actions;
+
+		return $actions;
 	}
 }
 new Oomph_Hidden_Tags;
